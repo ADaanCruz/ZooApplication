@@ -68,6 +68,11 @@ public class CreateFragment extends Fragment {
         etNombre = view.findViewById(R.id.editText_create_nombre);
         bnGuardar = view.findViewById(R.id.button_create_guardar);
 
+        a = "";
+        b = "";
+        sexo = "";
+        ingreso = "";
+
         sqlite = new SQLite(getContext());
         sqlite.abrir();
 
@@ -261,7 +266,11 @@ public class CreateFragment extends Fragment {
                         spEspecie.setId(0);
                         rbMacho.setChecked(false);
                         rbHembra.setChecked(false);
+                    } else {
+                        Toast.makeText(getContext(),"Error: Compruebe los datos", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(getContext(),"Error: Los campos están vacios", Toast.LENGTH_SHORT).show();
                 }
             }
         });

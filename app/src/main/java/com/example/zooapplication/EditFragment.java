@@ -92,6 +92,11 @@ public class EditFragment extends Fragment {
         bnBuscar = view.findViewById(R.id.button_edit_buscar);
         bnGuardar = view.findViewById(R.id.button_edit_guardar);
 
+        a = "";
+        b = "";
+        sexo = "";
+        ingreso = "";
+
         tvClasificacion.setVisibility(View.GONE);
         spClasificacion.setVisibility(View.GONE);
         tvEspecie.setVisibility(View.GONE);
@@ -349,10 +354,10 @@ public class EditFragment extends Fragment {
                         spEspecie.setId(0);
                         rbMacho.setChecked(false);
                         rbHembra.setChecked(false);
-                    }else{
+                    } else {
                         Toast.makeText(getContext(),"Error: Compruebe los datos", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(getContext(),"Error: Los campos están vacios", Toast.LENGTH_SHORT).show();
                 }
             }
