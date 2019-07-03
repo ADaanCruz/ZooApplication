@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity
         DeleteFragment.OnFragmentInteractionListener,
         ListFragment.OnFragmentInteractionListener,
         CreditsFragment.OnFragmentInteractionListener {
+
+    private AlertDialog.Builder dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Fragment fragment = new Fragment();
+        Fragment fragment = null;
 
         if (id == R.id.nav_create) {
             setTitle("Fragmento Crear");
@@ -94,16 +97,25 @@ public class MainActivity extends AppCompatActivity
             fragment = new ListFragment();
         } else if (id == R.id.nav_delete) {
             setTitle("Fragmento Eliminar");
-            fragment = new CreditsFragment();
+            fragment = new DeleteFragment();
         } else if (id == R.id.nav_edit) {
             setTitle("Fragmento Editar");
             fragment = new EditFragment();
         } else if (id == R.id.nav_credits) {
-            setTitle("Fragmento Créditos");
-            fragment = new CreditsFragment();
+            dialog = new AlertDialog.Builder(this);
+            dialog.setMessage("\tDeveloper:\nJosé Adán Cruz Castrejón.\n\n" +
+                    "\tTeacher:\nRocio Elizabeth Pulido Alba.\n\n" +
+                    "\tObject:\nDesarrollo de aplicaciones móviles.")
+            .setTitle("Créditos");
+            dialog.show();
+//            setTitle("Fragmento Créditos");
+//            fragment = new CreditsFragment();
         }
-        transaction.replace(R.id.frameLayout_contain_main, fragment, "CreditsFragment");
-        transaction.commit();
+
+        if (fragment != null) {
+            transaction.replace(R.id.frameLayout_contain_main, fragment, "CreditsFragment");
+            transaction.commit();
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
