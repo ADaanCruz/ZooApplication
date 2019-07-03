@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Zoo Application</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <string name="crear">Crear</string>
+    <string name="lista">Lista</string>
+    <string name="editar">Editar</string>
+    <string name="creditos">Créditos</string>
+    <string name="nuevo_registro">Nuevo registro</string>
+    <string name="registros">Registros</string>
+    <string name="editar_registro">Editar registro</string>
+    <string name="eliminar_registro">Eliminar registro</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="id">ID:</string>
+    <string name="clasificacion">Clasificación</string>
+    <string name="especie">Especie:</string>
+    <string name="sexo">Sexo:</string>
+    <string name="macho">Macho</string>
+    <string name="hembra">Hembra</string>
+    <string name="habitat">Hábitat:</string>
+    <string name="guardar">Guardar</string>
+    <string name="alimentacion">Alimentación:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="buscar">Buscar</string>
+</resources>
