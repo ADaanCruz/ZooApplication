@@ -113,9 +113,7 @@ public class CreateFragment extends Fragment {
                             String opcion = String.valueOf(spEspecie.getSelectedItemId());
                             int opc = Integer.parseInt(opcion);
                             System.out.println(opc);
-                            if (opc == 0) {
-
-                            } else if (opc == 1) {
+                            if (opc == 1) {
                                 b = Objects.requireNonNull(adapter1.getItem(1)).toString();
                             } else if (opc == 2) {
                                 b = Objects.requireNonNull(adapter1.getItem(2)).toString();
@@ -146,9 +144,7 @@ public class CreateFragment extends Fragment {
                             String opcion = String.valueOf(spEspecie.getSelectedItemId());
                             int opc = Integer.parseInt(opcion);
                             System.out.println(opc);
-                            if (opc == 0) {
-
-                            } else if (opc == 1) {
+                            if (opc == 1) {
                                 b = Objects.requireNonNull(adapter2.getItem(1)).toString();
                             } else if (opc == 2) {
                                 b = Objects.requireNonNull(adapter2.getItem(2)).toString();
@@ -178,9 +174,7 @@ public class CreateFragment extends Fragment {
                             String opcion = String.valueOf(spEspecie.getSelectedItemId());
                             int opc = Integer.parseInt(opcion);
                             System.out.println(opc);
-                            if (opc == 0) {
-
-                            } else if (opc == 1) {
+                            if (opc == 1) {
                                 b = Objects.requireNonNull(adapter2.getItem(1)).toString();
                             } else if (opc == 2) {
                                 b = Objects.requireNonNull(adapter2.getItem(2)).toString();
@@ -231,21 +225,22 @@ public class CreateFragment extends Fragment {
                         nombre = etNombre.getText().toString(),
                         habitat = etHabitat.getText().toString();
                 if (
-                        !id.isEmpty() &&
-                        !alimentacion.isEmpty() &&
-                        !nombre.isEmpty() &&
-                        !habitat.isEmpty() &&
-                        !ingreso.isEmpty()
+                    !id.isEmpty() &&
+                    !alimentacion.isEmpty() &&
+                    !nombre.isEmpty() &&
+                    !habitat.isEmpty() &&
+                    !ingreso.isEmpty() &&
+                    !a.isEmpty() &&
+                    !b.isEmpty() &&
+                    !sexo.isEmpty()
                 ) {
                     Toast.makeText(
                             getContext(),
-
                             nombre.toUpperCase() + " " +
                             sexo + " " +
                             ingreso + " " +
                             habitat.toUpperCase() + " " +
                             alimentacion.toUpperCase(),
-
                             Toast.LENGTH_SHORT).show();
                     if (sqlite.addRegistroAnimal(Integer.parseInt(id),
                             a,
@@ -254,10 +249,12 @@ public class CreateFragment extends Fragment {
                             sexo,
                             ingreso,
                             habitat.toUpperCase(),
-                            alimentacion.toUpperCase())) {
+                            alimentacion.toUpperCase())
+                    ) {
                         Toast.makeText(getContext(), "Registro añadido", Toast.LENGTH_SHORT).show();
                         etId.setText("");
                         etNombre.setText("");
+                        ingreso = "";
                         etHabitat.setText("");
                         etAlimentacion.setText("");
                         spClasificacion.setId(0);

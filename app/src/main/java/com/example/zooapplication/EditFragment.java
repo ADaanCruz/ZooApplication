@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -60,7 +61,7 @@ public class EditFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit, container, false);
         // Inflate the layout for this fragment
@@ -151,9 +152,69 @@ public class EditFragment extends Fragment {
                             String opcion = String.valueOf(spEspecie.getSelectedItemId());
                             int opc = Integer.parseInt(opcion);
                             System.out.println(opcion);
-                            if (opc == 0) {
+                            if (opc == 1) {
+                                b = Objects.requireNonNull(adapter1.getItem(1)).toString();
+                                Toast.makeText(getContext(), a + " " + b, Toast.LENGTH_SHORT).show();
+                            } else if (opc == 2) {
+                                b = Objects.requireNonNull(adapter1.getItem(2)).toString();
+                            } else if (opc == 3) {
+                                b = Objects.requireNonNull(adapter1.getItem(3)).toString();
+                            } else if (opc == 4) {
+                                b = Objects.requireNonNull(adapter1.getItem(4)).toString();
+                            }
+                        }
 
-                            } else if (opc == 1) {
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                } else if (opc == 2) {
+                    final ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
+                            Objects.requireNonNull(getContext()),
+                            R.array.especie2,
+                            android.R.layout.simple_spinner_item
+                    );
+                    spEspecie.setAdapter(adapter1);
+                    a = Objects.requireNonNull(adapter.getItem(1)).toString();
+                    spEspecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String opcion = String.valueOf(spEspecie.getSelectedItemId());
+                            int opc = Integer.parseInt(opcion);
+                            System.out.println(opcion);
+                            if (opc == 1) {
+                                b = Objects.requireNonNull(adapter1.getItem(1)).toString();
+                                Toast.makeText(getContext(), a + " " + b, Toast.LENGTH_SHORT).show();
+                            } else if (opc == 2) {
+                                b = Objects.requireNonNull(adapter1.getItem(2)).toString();
+                            } else if (opc == 3) {
+                                b = Objects.requireNonNull(adapter1.getItem(3)).toString();
+                            } else if (opc == 4) {
+                                b = Objects.requireNonNull(adapter1.getItem(4)).toString();
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                } else if (opc == 3) {
+                    final ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
+                            Objects.requireNonNull(getContext()),
+                            R.array.especie3,
+                            android.R.layout.simple_spinner_item
+                    );
+                    spEspecie.setAdapter(adapter1);
+                    a = Objects.requireNonNull(adapter.getItem(1)).toString();
+                    spEspecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String opcion = String.valueOf(spEspecie.getSelectedItemId());
+                            int opc = Integer.parseInt(opcion);
+                            System.out.println(opcion);
+                            if (opc == 1) {
                                 b = Objects.requireNonNull(adapter1.getItem(1)).toString();
                                 Toast.makeText(getContext(), a + " " + b, Toast.LENGTH_SHORT).show();
                             } else if (opc == 2) {
@@ -210,15 +271,89 @@ public class EditFragment extends Fragment {
                                 g4 = cursor.getString(7);
                             } while (cursor.moveToNext());
                         }
-                        etNombre.setText(g2);
+                        etNombre.setText(g1);
+                        ingreso = (g2);
                         etHabitat.setText(g3);
                         etAlimentacion.setText(g4);
-                        ingreso = (g1);
                     } else {
                         Toast.makeText(getContext(), "Error: No existe ese ID", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getContext(), "Error: No has puesto un ID", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        rbMacho.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (rbMacho.isChecked()) {
+                    sexo = "MACHO";
+                }
+            }
+        });
+
+        rbHembra.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (rbMacho.isChecked()) {
+                    sexo = "HEMBRA";
+                }
+            }
+        });
+
+        bnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = etId.getText().toString(),
+                        nombre = etNombre.getText().toString(),
+                        habitat = etHabitat.getText().toString(),
+                        alimentacion = etAlimentacion.getText().toString();
+                if (!id.isEmpty() &&
+                    !nombre.isEmpty() &&
+                    !habitat.isEmpty() &&
+                    !alimentacion.isEmpty() &&
+                    !ingreso.isEmpty() &&
+                    !a.isEmpty() &&
+                    !b.isEmpty() &&
+                    !sexo.isEmpty()
+                ){
+                    Toast.makeText(
+                            getContext(),
+                            a+
+                            b +
+                            nombre.toUpperCase()+
+                            sexo +
+                            ingreso +
+                            habitat.toUpperCase() +
+                            alimentacion.toUpperCase(),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    if (sqlite.updateRegAnimal(
+                            Integer.parseInt(id),
+                            a,
+                            b,
+                            nombre.toUpperCase(),
+                            sexo,
+                            ingreso,
+                            habitat.toUpperCase(),
+                            alimentacion.toUpperCase()).equals("Animal modificado")
+                    ){
+                        Toast.makeText(getContext(),"Registro guardado",Toast.LENGTH_SHORT).show();
+                        etId.setText("");
+                        etNombre.setText("");
+                        ingreso = "";
+                        etHabitat.setText("");
+                        etAlimentacion.setText("");
+                        spClasificacion.setId(0);
+                        spEspecie.setId(0);
+                        rbMacho.setChecked(false);
+                        rbHembra.setChecked(false);
+                    }else{
+                        Toast.makeText(getContext(),"Error: Compruebe los datos", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(),"Error: Los campos están vacios", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -55,14 +55,14 @@ public class SQLite {
         if (cursor.moveToFirst()) {
             do {
                 item = "";
-                item += "ID: " + cursor.getInt(0) + "\r\n";
-                item += "Clasificación: " + cursor.getInt(1) + "\r\n";
-                item += "Especie: " + cursor.getInt(2) + "\r\n";
-                item += "Nombre: " + cursor.getInt(3) + "\r\n";
-                item += "Sexo: " + cursor.getInt(4) + "\r\n";
-                item += "Fecha ingreso: " + cursor.getInt(5) + "\r\n";
-                item += "Hábitat: " + cursor.getInt(6) + "\r\n";
-                item += "Alimento: " + cursor.getInt(7) + "\r\n";
+                item += "ID: " + cursor.getString(0) + "\r\n";
+                item += "Clasificación: " + cursor.getString(1) + "\r\n";
+                item += "Especie: " + cursor.getString(2) + "\r\n";
+                item += "Nombre: " + cursor.getString(3) + "\r\n";
+                item += "Sexo: " + cursor.getString(4) + "\r\n";
+                item += "Fecha ingreso: " + cursor.getString(5) + "\r\n";
+                item += "Hábitat: " + cursor.getString(6) + "\r\n";
+                item += "Alimento: " + cursor.getString(7) + "\r\n";
 
                 list.add(item);
             } while (cursor.moveToNext());
