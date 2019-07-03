@@ -53,8 +53,14 @@ public class DeleteFragment extends Fragment {
                 System.out.println("Entraste");
                 String id = etId.getText().toString();
                 if (!id.isEmpty()) {
-                    sqlite.Eliminar(etId.getText());
-                    Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+                    int query = sqlite.Eliminar(etId.getText());
+                    if (query == (-1)) {
+                        Toast.makeText(getContext(),"Ocurrió un error", Toast.LENGTH_SHORT).show();
+                    } else if (query == 1) {
+                        Toast.makeText(getContext(), "Registro eliminado", Toast.LENGTH_SHORT).show();
+                    } else if (query == 0){
+                        Toast.makeText(getContext(), "No se encontró el registro", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getContext(), "Ingrese el campo ID", Toast.LENGTH_SHORT).show();
                 }
